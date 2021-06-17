@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel=" stylesheet " type ="text/css" href="/static/style.css">
+        <script src ="https://ajax.googleapis.com/ajax/libs/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+    <h1> Python Chatterbot </h1>
+    <div>
+        <div id = "chatbox">
+            <P class="botText"><span>Hi! I'm Chatterbot.</span></P>
+        </div>
+        <div id="userInput">
+            <input id ="textInput" type="text" name = "msg" placeholder="Message">
+             <input id ="buttonInput" type="submit" value="Send">
+    </div>
+        <script>
+            function getBotResponse(){
+              var rawText = $("#textInput").val();
+              var userHtml ='<p class="userText"><span>' +rawText + '<.span></p>';
+              $("#textInput").val("");
+              $("#chatbox").append(userHtml);
+              document.getElementById('userTnput').scrollIntoView({block:'start',behavior: 'smooth'});
+              $.get("/get",{ msg:rawText}).done(functon (data){
+                var botHtml ='<p class ="botText"><span>' +data + '</span></p>';
+                $("#chatbox").append(botHtml);
+                document.getElementById('userTnput').scrollIntoView({block:'start',behavior: 'smooth'});
+            ]);
+
+            }
+            $("#textInput").keypress(function(e){
+                If (e.which ==13){
+                getBotResponse();
+
+             });
+             $("#buttonInput").clickfunction{} {
+             getBotResponse();
+             })
+        </script>
+    </div>
+
+    </body>
+
+
+</html>
